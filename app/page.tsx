@@ -46,6 +46,23 @@ export default function Home() {
 
           <div className="space-y-12">
             <div className="border border-black/10 p-8 sm:p-12">
+              <h3 className="text-2xl font-light mb-4">Bind</h3>
+              <p className="text-base sm:text-lg font-light mb-6 text-black/70">
+                macOS app — Combine JPEG images in a folder into a single PDF (keeps original quality).
+              </p>
+              <div className="flex gap-4 flex-wrap">
+                <Link
+                  href="https://github.com/vasqiart/bind"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm border-b border-black/30 pb-1 hover:border-black transition-colors"
+                >
+                  <Github size={14} />
+                  GitHub
+                </Link>
+              </div>
+            </div>
+            <div className="border border-black/10 p-8 sm:p-12">
               <h3 className="text-2xl font-light mb-4">Whitespace Cleaner</h3>
               <p className="text-base sm:text-lg font-light mb-6 text-black/70">
                 Clean up spacing and blank lines instantly in your browser.
