@@ -14,7 +14,7 @@ export default function Home() {
     {
       title: 'Thumb2MB',
       description: "Optimize images for YouTube's 2MB thumbnail limit.",
-      github: '',
+      github: 'https://github.com/vasqiart/thumb2mb',
       liveDemo: 'https://thumb2mb.vercel.app',
     },
     {
