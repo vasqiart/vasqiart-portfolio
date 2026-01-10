@@ -1,10 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, ArrowRight } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export default function Home() {
   const products = [
+    {
+      title: 'Icon',
+      description: 'Generate beautiful macOS app icons from any image — directly in your browser.',
+      github: 'https://github.com/vasqiart/icon',
+      liveDemo: 'https://icon-liard-rho.vercel.app',
+    },
     {
       title: 'Thumb2MB',
       description: "Optimize images for YouTube's 2MB thumbnail limit.",
@@ -74,13 +80,6 @@ export default function Home() {
   );
 
   const ProductsShelf = () => {
-    // プロダクトを行に分割（1行あたり1列で縦に並べる）
-    const itemsPerRow = 1;
-    const rows = [];
-    for (let i = 0; i < products.length; i += itemsPerRow) {
-      rows.push(products.slice(i, i + itemsPerRow));
-    }
-
     return (
       <aside
         id="products"
@@ -91,76 +90,56 @@ export default function Home() {
             Products
           </h2>
           <div className="space-y-0">
-            {rows.map((rowProducts, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="py-8 border-b border-black/10 last:border-b-0 last:pb-0"
-              >
-                <div className="grid grid-cols-1 gap-4 md:gap-6 items-stretch">
-                  {rowProducts.map((product, productIndex) => {
-                    const isWhitespaceCleaner = product.title === 'Whitespace Cleaner';
-                    const hasLiveDemo = product.liveDemo && product.liveDemo !== '';
+            {products.map((product, index) => {
+              const hasLiveDemo = product.liveDemo && product.liveDemo !== '';
+              const hasGithub = product.github && product.github !== '';
+              
+              return (
+                <div
+                  key={index}
+                  className="py-4 md:py-5 border-b border-black/10 last:border-b-0 hover:bg-black/[0.02] transition-colors"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
+                    {/* 左側: title + description */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-light sm:font-normal mb-1.5">
+                        {product.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm font-light text-black/60 line-clamp-2">
+                        {product.description}
+                      </p>
+                    </div>
                     
-                    const cardContent = (
-                      <div className="flex flex-col h-full">
-                        <div>
-                          <h3 className="text-lg sm:text-xl font-light mb-2">{product.title}</h3>
-                          <p className="text-xs sm:text-sm font-light mb-2 text-black/70 clamp-2">
-                            {product.description}
-                          </p>
-                        </div>
-                        <div className={`flex gap-3 flex-wrap ${isWhitespaceCleaner ? 'mt-auto' : ''}`}>
-                          {product.liveDemo && (
-                            <Link
-                              href={product.liveDemo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs border-b border-black pb-0.5 hover:border-black/40 transition-colors"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              Live Demo
-                              <ArrowRight size={12} />
-                            </Link>
-                          )}
-                          {product.github && (
-                            <Link
-                              href={product.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs border-b border-black/30 pb-0.5 hover:border-black transition-colors"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <Github size={12} />
-                              GitHub
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    );
-                    
-                    return (
-                      <div
-                        key={productIndex}
-                        className="border border-black/10 rounded-none p-4 md:p-5 hover:border-black/30 hover:bg-black/[0.02] transition-colors h-full"
-                      >
-                        {hasLiveDemo ? (
+                    {/* 右側: リンク */}
+                    {(hasLiveDemo || hasGithub) && (
+                      <div className="flex gap-4 items-center flex-shrink-0">
+                        {hasLiveDemo && (
                           <Link
                             href={product.liveDemo!}
                             target="_blank"
-                            rel="noreferrer"
-                            className="block h-full"
+                            rel="noopener noreferrer"
+                            className="text-xs border-b border-black/30 pb-0.5 hover:border-black transition-colors"
                           >
-                            {cardContent}
+                            Live Demo
                           </Link>
-                        ) : (
-                          cardContent
+                        )}
+                        {hasGithub && (
+                          <Link
+                            href={product.github!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs border-b border-black/30 pb-0.5 hover:border-black transition-colors"
+                          >
+                            <Github size={12} />
+                            GitHub
+                          </Link>
                         )}
                       </div>
-                    );
-                  })}
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </aside>
