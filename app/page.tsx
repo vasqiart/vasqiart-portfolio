@@ -65,7 +65,7 @@ export default function Home() {
     });
 
     return (
-      <section id="products" className="max-w-[720px] mx-auto pb-20 sm:pb-24">
+      <section id="products" className="max-w-5xl mx-auto pb-20 sm:pb-24">
         <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-center">
           Products
         </h2>
@@ -95,7 +95,7 @@ export default function Home() {
         </div>
 
         {/* プロダクトリスト */}
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredProducts.map((product, index) => {
             const hasLiveDemo = product.liveDemo && product.liveDemo !== '';
             const hasGithub = product.github && product.github !== '';
@@ -167,16 +167,13 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black">
       <div className="w-full px-6 sm:px-8 md:px-10">
         {/* Hero */}
-        <section className="flex flex-col items-center justify-center pt-24 sm:pt-32 pb-16 sm:pb-20">
+        <section className="flex flex-col items-center justify-center pt-16 sm:pt-20 pb-8 sm:pb-12">
           <div className="max-w-[720px] w-full text-center">
-            <h1 className="text-7xl sm:text-8xl md:text-9xl font-normal sm:font-medium tracking-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-normal sm:font-medium tracking-tight mb-4">
               vasqiart
             </h1>
-            <p className="text-xl sm:text-2xl font-light mb-3 text-black/70">
-              Minimal, privacy-first tools.
-            </p>
-            <p className="text-sm sm:text-base font-light mb-12 text-black/50">
-              Built in Tokyo.
+            <p className="text-sm sm:text-base font-light mb-8 text-black/50">
+              Built with vibe coding.
             </p>
             <div className="flex gap-4 flex-wrap justify-center">
               <Link
