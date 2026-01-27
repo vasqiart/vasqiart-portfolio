@@ -11,7 +11,7 @@ export default function Home() {
       description: 'Track subscriptions with manual entries, monthly/annual billing, and exchange rate support.',
       type: 'macos' as const,
       tags: ['Subscription tracking', 'Manual input', 'Exchange rate'],
-      github: '',
+      github: 'https://github.com/vasqiart/subs',
       liveDemo: '',
     },
     {
