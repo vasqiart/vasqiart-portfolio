@@ -222,7 +222,7 @@ export default function Home() {
                 GitHub
               </Link>
               <Link
-                href="https://x.com"
+                href="https://x.com/vasqiart"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-200 rounded-lg text-sm font-medium text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-colors"
