@@ -5,10 +5,13 @@ import Link from 'next/link';
 import { Github } from 'lucide-react';
 
 export default function Home() {
+  const [lang, setLang] = useState<'en' | 'ja'>('en');
+
   const products = [
     {
       title: 'Subs',
       description: 'Track subscriptions with manual entries, monthly/annual billing, and exchange rate support.',
+      descriptionJa: '手動入力でサブスクリプションを管理。\n月次・年次請求と為替レート対応。',
       type: 'macos' as const,
       tags: ['Subscription tracking', 'Manual input', 'Exchange rate'],
       github: 'https://github.com/vasqiart/subs',
@@ -17,6 +20,7 @@ export default function Home() {
     {
       title: 'Icon',
       description: 'Generate beautiful macOS app icons from any image — directly in your browser.',
+      descriptionJa: '任意の画像から美しいmacOSアプリアイコンを生成。\nブラウザで直接利用可能。',
       type: 'web' as const,
       tags: ['Icon generator', 'Browser-based', 'Image processing'],
       github: 'https://github.com/vasqiart/icon',
@@ -25,6 +29,7 @@ export default function Home() {
     {
       title: 'Thumb2MB',
       description: "Optimize images for YouTube's 2MB thumbnail limit.",
+      descriptionJa: 'YouTubeの2MBサムネイル制限に対応した画像最適化ツール。',
       type: 'web' as const,
       tags: ['Image optimization', 'YouTube', 'Thumbnail'],
       github: 'https://github.com/vasqiart/thumb2mb',
@@ -33,6 +38,7 @@ export default function Home() {
     {
       title: 'Rename',
       description: 'macOS app — Batch rename PDF files with safe, sequential numbering.',
+      descriptionJa: 'macOSアプリ — PDFファイルを安全に連番で一括リネーム。',
       type: 'macos' as const,
       tags: ['File management', 'Batch processing', 'PDF'],
       github: 'https://github.com/vasqiart/Rename',
@@ -41,6 +47,7 @@ export default function Home() {
     {
       title: 'Bind',
       description: 'macOS app — Combine JPEG images in a folder into a single PDF (keeps original quality).',
+      descriptionJa: 'macOSアプリ — フォルダ内のJPEG画像を1つのPDFに結合。',
       type: 'macos' as const,
       tags: ['PDF creation', 'Image processing', 'File management'],
       github: 'https://github.com/vasqiart/bind',
@@ -49,6 +56,7 @@ export default function Home() {
     {
       title: 'Whitespace Cleaner',
       description: 'Clean up spacing and blank lines instantly in your browser.',
+      descriptionJa: 'ブラウザで空白行や余分なスペースを即座に整理。',
       type: 'web' as const,
       tags: ['Text processing', 'Browser-based', 'Formatting'],
       github: 'https://github.com',
@@ -56,7 +64,7 @@ export default function Home() {
     },
   ];
 
-  const ProductsShelf = () => {
+  const ProductsShelf = ({ lang }: { lang: 'en' | 'ja' }) => {
     const [filter, setFilter] = useState<'all' | 'web' | 'macos'>('all');
 
     const filteredProducts = products.filter((product) => {
@@ -138,8 +146,8 @@ export default function Home() {
                 </div>
                 
                 {/* 中段: description */}
-                <p className="text-sm sm:text-base text-neutral-600 line-clamp-2 mb-3">
-                  {product.description}
+                <p className="text-sm sm:text-base text-neutral-600 line-clamp-2 mb-3 whitespace-pre-line">
+                  {lang === 'ja' ? (product.descriptionJa ?? product.description) : product.description}
                 </p>
                 
                 {/* 下段: tags */}
@@ -163,17 +171,45 @@ export default function Home() {
     );
   };
 
+  const heroSubcopy = lang === 'ja' ? 'vibe coding製。' : 'Built with vibe coding.';
+
   return (
     <div className="min-h-screen bg-white text-black">
       <div className="w-full px-6 sm:px-8 md:px-10">
+        {/* 言語切替UI（右上） */}
+        <div className="flex justify-end pt-6 sm:pt-8">
+          <div className="inline-flex gap-1 rounded-lg border border-neutral-200 bg-white p-1">
+            <button
+              onClick={() => setLang('en')}
+              className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                lang === 'en'
+                  ? 'bg-neutral-100 text-neutral-900'
+                  : 'text-neutral-600 hover:bg-neutral-50'
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLang('ja')}
+              className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                lang === 'ja'
+                  ? 'bg-neutral-100 text-neutral-900'
+                  : 'text-neutral-600 hover:bg-neutral-50'
+              }`}
+            >
+              JP
+            </button>
+          </div>
+        </div>
+
         {/* Hero */}
-        <section className="flex flex-col items-center justify-center pt-16 sm:pt-20 pb-8 sm:pb-12">
+        <section className="flex flex-col items-center justify-center pt-8 sm:pt-12 pb-8 sm:pb-12">
           <div className="max-w-[720px] w-full text-center">
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-normal sm:font-medium tracking-tight mb-4">
               vasqiart
             </h1>
             <p className="text-sm sm:text-base font-light mb-8 text-black/50">
-              Built with vibe coding.
+              {heroSubcopy}
             </p>
             <div className="flex gap-4 flex-wrap justify-center">
               <Link
@@ -205,7 +241,7 @@ export default function Home() {
         </section>
 
         {/* Products */}
-        <ProductsShelf />
+        <ProductsShelf lang={lang} />
       </div>
     </div>
   );
