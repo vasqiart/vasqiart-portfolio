@@ -9,6 +9,15 @@ export default function Home() {
 
   const products = [
     {
+      title: 'TEN',
+      description: 'Minimal number puzzle game. Reach TEN by merging numbers.',
+      descriptionJa: '数字を合成してTENを目指す、ミニマルなパズルゲーム。',
+      type: 'web' as const,
+      tags: ['Game', 'Puzzle', 'Next.js'],
+      github: 'https://github.com/vasqiart/ten',
+      liveDemo: 'https://ten-dusky-five.vercel.app/',
+    },
+    {
       title: 'Subs',
       description: 'Track subscriptions with manual entries, monthly/annual billing, and exchange rate support.',
       descriptionJa: '手動入力でサブスクリプションを管理。\n月次・年次請求と為替レート対応。',
