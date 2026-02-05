@@ -9,6 +9,15 @@ export default function Home() {
 
   const products = [
     {
+      title: 'Launched Today',
+      description: "Yesterday's Top 10 from Product Hunt and GitHub — ranked by votes and stars.",
+      descriptionJa: '投票数とスター数を基準に、昨日1日分のTop 10を一覧で表示します。',
+      type: 'web' as const,
+      tags: ['Product Hunt', 'GitHub', 'Top 10', 'Daily snapshot'],
+      github: 'https://github.com/vasqiart/launched-today',
+      liveDemo: 'https://launched-today-25cb5hhf9-vasqiarts-projects.vercel.app',
+    },
+    {
       title: 'TEN',
       description: 'Minimal number puzzle game. Reach TEN by merging numbers.',
       descriptionJa: '数字を合成してTENを目指す、ミニマルなパズルゲーム。',
@@ -68,7 +77,7 @@ export default function Home() {
       descriptionJa: 'ブラウザで空白行や余分なスペースを即座に整理。',
       type: 'web' as const,
       tags: ['Text processing', 'Browser-based', 'Formatting'],
-      github: 'https://github.com',
+      github: 'https://github.com/vasqiart/whitespace-cleaner',
       liveDemo: 'https://whitespace-cleaner.vercel.app',
     },
   ];
