@@ -9,6 +9,15 @@ export default function Home() {
 
   const products = [
     {
+      title: 'Vault',
+      description: 'Offline-only email & password vault for purpose-based accounts.',
+      descriptionJa: '用途別メール/パスワードをローカル完結で管理するオフライン金庫。',
+      type: 'macos' as const,
+      tags: ['Offline-only', 'AES-256-GCM', 'Argon2id', 'Auto-lock', 'One-click copy'],
+      github: 'https://github.com/vasqiart/vault',
+      liveDemo: '',
+    },
+    {
       title: 'Launched Today',
       description: "Yesterday's Top 10 from Product Hunt and GitHub — ranked by votes and stars.",
       descriptionJa: '投票数とスター数を基準に、昨日1日分のTop 10を一覧で表示します。',
